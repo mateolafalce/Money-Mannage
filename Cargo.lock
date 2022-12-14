@@ -770,6 +770,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "moneymannage"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "oorandom",
+]
+
+[[package]]
 name = "num-derive"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1202,14 +1210,6 @@ dependencies = [
  "quote",
  "rustversion",
  "syn",
-]
-
-[[package]]
-name = "solotery"
-version = "0.1.0"
-dependencies = [
- "anchor-lang",
- "oorandom",
 ]
 
 [[package]]
