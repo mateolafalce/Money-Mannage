@@ -20,4 +20,13 @@ pub mod moneymannage {
             amount
         )
     }
+    pub fn add_account(
+        ctx: Context<AddAccount>,
+        amount: u64
+    ) -> Result<()> {
+        instructions::add_account::add_account(
+            ctx,
+            amount
+        )
+    }
 }
