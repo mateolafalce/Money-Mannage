@@ -10,14 +10,12 @@ pub fn add_account(
     ctx: Context<AddAccount>,
     amount: u64
 ) -> Result<()> {
-    let mut check: bool = false;
+    let mut key_exist: bool = false;
     for i in ctx.accounts.main_account.vec_keys.clone() {
-    if i == ctx.accounts.user.key() {
-        check = true
-    }
+    if i == ctx.accounts.user.key() { key_exist = true }
 }
     require!(amount <= AccountInfo::lamports(&ctx.accounts.user.to_account_info()), ErrorCode::AmountError);
-    require!(check == false, ErrorCode::PubkeyError);
+    require!(key_exist == false, ErrorCode::PubkeyError);
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let (pda, _bump) = Pubkey::find_program_address(&[b"Main Account"], ctx.program_id);
     anchor_lang::solana_program::program::invoke(
