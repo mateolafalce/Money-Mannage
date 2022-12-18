@@ -2,15 +2,16 @@ import * as anchor from "@project-serum/anchor";
 import { Moneymannage } from "../target/types/moneymannage";
 import { wallet, MainAccount } from "../tests/Account";
 
-describe("Add Account", () => {
+describe("Tranfer lamports", () => {
     const program = anchor.workspace.Moneymannage as anchor.Program<Moneymannage>;
     it("...", async () => {
-        const tx = await program.methods.addAccount(
+        const tx = await program.methods.transfer(
             new anchor.BN(6000)
         )
             .accounts({
                 mainAccount: MainAccount,
                 user: wallet.publicKey,
+                to: wallet.publicKey,
                 mainAccountInfo: MainAccount,
                 systemProgram: anchor.web3.SystemProgram.programId,
             }).rpc();

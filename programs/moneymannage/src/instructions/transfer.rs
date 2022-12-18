@@ -13,12 +13,12 @@ pub fn transfer(
     for i in ctx.accounts.main_account.vec_keys.clone() {
     if i == ctx.accounts.user.key() { key_exist = true }
 }
+    require!(key_exist == false, ErrorCode::PubkeyError);
     let index = ctx.accounts.main_account.vec_keys
     .clone().iter().position(|&x| x == ctx.accounts.user.key()).unwrap();
     let (pda, _bump) = Pubkey::find_program_address(&[b"Main Account"], ctx.program_id);
     require!(amount <= ctx.accounts.main_account.vec_ammount[index], ErrorCode::AmountError);
     require!(pda == ctx.accounts.main_account_info.key(), ErrorCode::PubkeyError);
-    require!(key_exist == false, ErrorCode::PubkeyError);
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     **ctx.accounts.main_account_info.to_account_info().try_borrow_mut_lamports()? -= amount;
     **ctx.accounts.to.to_account_info().try_borrow_mut_lamports()? += amount;

@@ -29,4 +29,13 @@ pub mod moneymannage {
             amount
         )
     }
+    pub fn transfer(
+        ctx: Context<Transfer>,
+        amount: u64
+    ) -> Result<()> {
+        instructions::transfer::transfer(
+            ctx,
+            amount
+        )
+    }
 }
